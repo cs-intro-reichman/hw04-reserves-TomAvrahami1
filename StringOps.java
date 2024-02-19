@@ -22,6 +22,10 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
+        System.out.println(capVowelsLowRest( "Hello World"));
+        System.out.println(capVowelsLowRest("One two tHRee world"));
+        System.out.println(camelCase("Hello World"));
+        System.out.println(camelCase("  tWo wordS"));
         
     }
 
@@ -30,29 +34,30 @@ public class StringOps {
         for ( int i = 0; i < string.length(); i++){
             char cur = string.charAt(i);
             if(isUppercase(cur)){
-                if(isVowel(cur))
-                    ans = ans + cur;
+                if(isVowel(cur)){
+                    ans = ans + cur;}
                 else {
                     cur = (char)(cur + 32);
                    ans = ans + cur;
                 }
             }
-            if (isLowerCase(cur)) {
+            else if (isLowerCase(cur)) {
                 if(isVowel(cur)){
                     cur = (char)(cur - 32);
                     ans = ans + cur;
                 }
-                else
-                    ans = ans + cur;
+                else{
+                    ans = ans + cur;}
             }
-           else{
-            ans = ans + cur;
+           else if( !isLowerCase(cur) && !isLowerCase(cur)){
+                ans = ans + cur;
            }
-                
+           }
+              return ans;  
             }
-        return ans;
+       
         
-        }
+       
        
   
 
@@ -61,7 +66,6 @@ public class StringOps {
        String ans ="";
        boolean prevSpace = false;
         while (string.charAt(i) == 32){
-            ans = ans + string.charAt(i);
             i++;
         }
         char c = string.charAt(i);

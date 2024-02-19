@@ -26,17 +26,123 @@ public class StringOps {
     }
 
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
-    }
+        String ans= "";
+        for ( int i = 0; i < string.length(); i++){
+            char cur = string.charAt(i);
+            if(isUppercase(cur)){
+                if(isVowel(cur))
+                    ans = ans + cur;
+                else {
+                    cur = (char)(cur + 32);
+                   ans = ans + cur;
+                }
+            }
+            if (isLowerCase(cur)) {
+                if(isVowel(cur)){
+                    cur = (char)(cur - 32);
+                    ans = ans + cur;
+                }
+                else
+                    ans = ans + cur;
+            }
+           else{
+            ans = ans + cur;
+           }
+                
+            }
+        return ans;
+        
+        }
+       
+  
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+       int i = 0;
+       String ans ="";
+       boolean prevSpace = false;
+        while (string.charAt(i) == 32){
+            ans = ans + string.charAt(i);
+            i++;
+        }
+        char c = string.charAt(i);
+        if(isUppercase(c))
+            c = (char)(c + 32);
+        ans = ans + c;
+        i++;
+        while( i < string.length()){
+           c = string.charAt(i);
+           if(prevSpace){
+            if(isLowerCase(c)){
+                c = (char)(c - 32);
+                ans = ans + c;
+                prevSpace = false;
+            }
+            else{
+                ans = ans + c;
+                prevSpace = false;
+            }   
+           } else {
+            if(isUppercase(c)){
+                c = (char)(c + 32);
+                ans = ans + c;
+                prevSpace = false;
+            }
+            else{
+                ans = ans + c;
+                prevSpace = false;
+            }   
+           }
+            if(string.charAt(i) == 32)
+                prevSpace = true;
+            i++;
+            
+        }
+        return ans;
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        int count = 0; 
+        int t = 0;
+        for ( int i =0; i < string.length(); i++){
+            if( string.charAt(i) == chr)
+                count++;
+        }
+        int [] ans = new int [count];
+        for (int j = 0; j < string.length(); j++){
+            if ( string.charAt(j) == chr) {
+                ans[t] = j;
+                t++;
+            }
+        }
+
+        return  ans;
     }
+
+    public static boolean isUppercase (char c){
+        return ( c >= 65 && c <= 90);
+    }
+
+    public static boolean isLowerCase (char c){
+        return ( c >= 97 && c <= 122);
+    }
+
+    public static boolean isVowel (char c){
+        switch (c) {
+            case 'a':
+            case 'A':
+            case 'e':
+            case 'E':
+            case 'o':
+            case 'O':
+            case 'i':
+            case 'I':
+            case 'u':
+            case 'U':
+                return true;
+            default:
+                return false;
+
+        }
+    }
+
 }
